@@ -5,6 +5,7 @@ if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
+vim.g.ranger_replace_netrw = 1
 
 require("lazy").setup({
 	spec = {
@@ -12,8 +13,10 @@ require("lazy").setup({
 		{ "LazyVim/LazyVim", import = "lazyvim.plugins", opts = { colorscheme = "tokyonight-night", style = "night" } },
 		{ "nvim-lua/plenary.nvim", lazy = true },
 		"sainnhe/gruvbox-material",
+		{ import = "lazyvim.plugins.extras.dap.core" },
 		-- import/override with your plugins
 		{ import = "plugins" },
+		{ "nvim-neo-tree/neo-tree.nvim", enabled = false },
 		-- import any extras modules here
 		-- { import = "lazyvim.plugins.extras.lang.typescript" },
 		-- { import = "lazyvim.plugins.extras.lang.json" },
@@ -43,6 +46,15 @@ require("lazy").setup({
 				"tutor",
 				"zipPlugin",
 			},
+		},
+	},
+})
+require("lspconfig").ghdl_ls.setup({})
+require("lspconfig").glslls.setup({})
+require("lspconfig").ltex.setup({
+	settings = {
+		ltex = {
+			language = "pl-PL",
 		},
 	},
 })

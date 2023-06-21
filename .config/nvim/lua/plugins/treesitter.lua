@@ -29,6 +29,7 @@ return {
 				"query",
 				"regex",
 				"tsx",
+				"kotlin",
 				"typescript",
 				"vim",
 				"yaml",
